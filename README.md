@@ -1,2 +1,3 @@
 # River_Raid_project
-ap c++ project
+name: mohammad amin moloudi
+stdID: 94105452
