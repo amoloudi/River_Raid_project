@@ -18,7 +18,6 @@ public slots:
     void spawnJet();
     void spawnBalloon();
     void spawnFuelDepot();
-    void DecreaseFuel();
 };
 
 #endif // MYJET_H
