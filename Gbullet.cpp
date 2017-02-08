@@ -12,6 +12,8 @@
 #include <QList>
 
 Bullet::Bullet(int x, int y): QObject(), QGraphicsPixmapItem(){
+    explosion = new QMediaPlayer();
+    explosion->setMedia(QUrl("qrc:/sounds/explosion.wav"));
 
     NewBullet = new LogicBullet(x, y);
 
@@ -29,6 +31,24 @@ void Bullet::move(){
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(EnemyHeli) || typeid(*(colliding_items[i])) == typeid(EnemyShip) || typeid(*(colliding_items[i])) == typeid(EnemyJet) || typeid(*(colliding_items[i])) == typeid(EnemyBalloon) || typeid(*(colliding_items[i])) == typeid(FuelDepot)){
+            //play explosion sound
+            if (explosion->state() == QMediaPlayer::PlayingState){
+                explosion->setPosition(0);
+            }
+            else if (explosion->state() == QMediaPlayer::StoppedState){
+                explosion->play();
+            }
+            // increase score based on enemy type
+            if(typeid(*(colliding_items[i])) == typeid(EnemyHeli))
+                score->IncreaseHeli();
+            else if(typeid(*(colliding_items[i])) == typeid(EnemyBalloon))
+                score->IncreaseBalloon();
+            else if(typeid(*(colliding_items[i])) == typeid(EnemyJet))
+                score->IncreaseJet();
+            else if(typeid(*(colliding_items[i])) == typeid(EnemyShip))
+                score->IncreaseShip();
+            else if(typeid(*(colliding_items[i])) == typeid(FuelDepot))
+                score->IncreaseFuelDepot();
             // speed up game
             if(GJet->getScore() > 250 && GJet->getScore() < 500 && GJet->getSpeed() == 5)
                 GJet->setSpeed(1);
