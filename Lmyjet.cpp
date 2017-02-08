@@ -2,24 +2,30 @@
 
 LogicJet::LogicJet()
 {
-  
-  
-    PosX     = 630;
+    Score    = 0;
     Fuel     = 100;
+    PosX     = 630;
     PosY     = 680;
+    Speed    = 5;
     Width    = 30;
     Height   = 40;
 }
 
+int LogicJet::getScore()
+{
+    return Score;
+}
+
+int LogicJet::getFuel()
+{
+    return Fuel;
+}
 
 int LogicJet::getPosX()
 {
     return PosX;
 }
-int LogicJet::getFuel()
-{
-    return Fuel;
-}
+
 int LogicJet::getPosY()
 {
     return PosY;
@@ -34,10 +40,6 @@ void LogicJet::setPosY(int y)
 {
     PosY = y;
 }
-void LogicJet::setFuel(int F)
-{
-    Fuel = F;
-}
 
 int LogicJet::getWidth()
 {
@@ -47,4 +49,24 @@ int LogicJet::getWidth()
 int LogicJet::getHeight()
 {
     return Height;
+}
+
+void LogicJet::setScore(int S)
+{
+    Score = S;
+}
+
+void LogicJet::setFuel(int F)
+{
+    Fuel = F;
+}
+// speed up
+void LogicJet::setSpeed(int S)
+{
+    Speed += S;
+}
+
+int LogicJet::getSpeed()
+{
+    return Speed;
 }
