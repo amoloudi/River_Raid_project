@@ -9,6 +9,8 @@
 #include "globals.h"
 
 FuelDepot::FuelDepot(): QObject(), QGraphicsPixmapItem(){
+    fuelSound = new QMediaPlayer();
+    fuelSound->setMedia(QUrl("qrc:/sounds/fuelsound.wav"));
 
     NewFuelDepot = new LogicFuelDepot();
     // drew the rect
@@ -25,6 +27,13 @@ void FuelDepot::move(){
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(MyJet)){
+            //play fuel sound
+            if (fuelSound->state() == QMediaPlayer::PlayingState){
+                fuelSound->setPosition(0);
+            }
+            else if (fuelSound->state() == QMediaPlayer::StoppedState){
+                fuelSound->play();
+            }
             if(GJet->getFuel()+2 > 100)
                 GJet->setFuel(100);
             else
