@@ -4,6 +4,7 @@
 #include "Genemyheli.h"
 #include <QTimer>
 #include <typeinfo>
+#include "gameover.h"
 #include "globals.h"
 #include <QGraphicsScene>
 #include <QList>
@@ -23,6 +24,10 @@ void EnemyBalloon::move(){
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(MyJet)){
+            // print GAME OVER
+            GameOver* gameover = new GameOver();
+            gameover->setPos(425,300);
+            scene()->addItem(gameover);
             // delete logic enemy jet
             delete NewEnemyBalloon;
             // remove them both
