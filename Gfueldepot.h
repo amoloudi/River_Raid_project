@@ -4,10 +4,12 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include "lfueldepot.h"
+#include <QMediaPlayer>
 
 class FuelDepot: public QObject,public QGraphicsPixmapItem{
     Q_OBJECT
 private:
+    QMediaPlayer * fuelSound;
     LogicFuelDepot * NewFuelDepot;
 public:
     FuelDepot();
