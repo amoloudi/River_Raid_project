@@ -1,6 +1,7 @@
 #include "genemyjet.h"
 #include "Gmyjet.h"
 #include "lenemyjet.h"
+#include "gameover.h"
 #include "globals.h"
 #include <QTimer>
 #include <typeinfo>
@@ -27,6 +28,10 @@ void EnemyJet::move(){
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(MyJet)){
+            // print GAME OVER
+            GameOver* gameover = new GameOver();
+            gameover->setPos(425,300);
+            scene()->addItem(gameover);
             // delete logic enemy jet
             delete NewEnemyJet;
             // remove them both
