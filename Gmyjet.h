@@ -6,7 +6,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QMediaPlayer>
-//#include "Lmyjet.h"
 #include "globals.h"
 #include "fuel.h"
 
