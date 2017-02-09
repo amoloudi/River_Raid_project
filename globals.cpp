@@ -2,4 +2,3 @@
 
 Score * score;
 LogicJet * GJet;
-int FUEL;
